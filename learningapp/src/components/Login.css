@@ -1,0 +1,118 @@
+/* src/components/Login.css */
+
+* {
+  box-sizing: border-box;
+}
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+  font-family: "Poppins", sans-serif;
+  padding: 20px;
+}
+
+.login-card {
+  background: #ffffff;
+  padding: 40px 30px;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.login-card:hover {
+  transform: translateY(-5px);
+}
+
+.login-title {
+  font-size: 26px;
+  margin-bottom: 30px;
+  color: #333;
+  font-weight: 700;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.login-input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s;
+}
+
+.login-input:focus {
+  border-color: #335fd1;
+  box-shadow: 0 0 8px rgba(51,95,209,0.3);
+}
+
+.login-btn {
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s;
+}
+
+.login-btn-primary {
+  background: #335fd1;
+  color: #fff;
+}
+
+.login-btn-primary:hover {
+  background: #2746a0;
+}
+
+.login-btn-success {
+  background: #28a745;
+  color: #fff;
+}
+
+.login-btn-success:hover {
+  background: #1e7e34;
+}
+
+.login-btn-link {
+  background: transparent;
+  color: #335fd1;
+  text-decoration: underline;
+  font-size: 14px;
+}
+
+.login-btn-link:hover {
+  color: #2746a0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .login-card {
+    padding: 30px 20px;
+  }
+
+  .login-title {
+    font-size: 22px;
+  }
+
+  .login-input {
+    padding: 12px 14px;
+    font-size: 15px;
+  }
+
+  .login-btn {
+    font-size: 15px;
+    padding: 10px;
+  }
+}

@@ -116,3 +116,57 @@ app.get("/", (req, res) => {
 
 // ---------------- Start Server ---------------- //
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+
+// Get all users (admin view)
+app.get("/api/users", async (req, res) => {
+  try {
+    const users = await User.find({}, { password: 0 }); // exclude password
+    res.json(users);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error fetching users" });
+  }
+});
+
+// Get single user by ID
+app.get("/api/user/:id", async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id, { password: 0 });
+    if (!user) return res.status(404).json({ error: "User not found" });
+    res.json(user);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error fetching user" });
+  }
+});
+
+// Update skills, goal, or path
+app.put("/api/user/:id", async (req, res) => {
+  try {
+    const { skills, goal, path } = req.body;
+    const user = await User.findById(req.params.id);
+    if (!user) return res.status(404).json({ error: "User not found" });
+
+    if (skills) user.skills = skills;
+    if (goal) user.goal = goal;
+    if (path) user.path = path;
+
+    await user.save();
+    res.json({ message: "User updated successfully!" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error updating user" });
+  }
+});
+
+// Delete user
+app.delete("/api/user/:id", async (req, res) => {
+  try {
+    const user = await User.findByIdAndDelete(req.params.id);
+    if (!user) return res.status(404).json({ error: "User not found" });
+    res.json({ message: "User deleted successfully!" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error deleting user" });
+  }
+});
